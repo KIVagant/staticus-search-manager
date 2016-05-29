@@ -1,0 +1,22 @@
+{
+  "name": "kivagant/staticus-search-manager",
+  "type": "project",
+  "license": "Apache 2.0",
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0-dev",
+      "dev-develop": "1.1-dev"
+    }
+  },
+  "minimum-stability" : "dev",
+  "prefer-stable" : true,
+  "require": {
+    "php": "^5.5 || ^7.0",
+    "kivagant/staticus-core": "dev-master"
+  },
+  "autoload" : {
+    "psr-4": {
+      "SearchManager\\": "src/"
+    }
+  }
+}
