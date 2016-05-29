@@ -1,14 +1,14 @@
 # Staticus Core
 
-This is a core-part of the [Staticus project](https://github.com/KIVagant/staticus).
+This is a Search Manager for the [Staticus project](https://github.com/KIVagant/staticus).
 
 Look to the parent repository for more information.
 
 ## Contributors
 
-Andrew Yanakov <ayanakov at englishdom.com>
-Eugene Glotov <kivagant at gmail.com>
-Vadim Leontiev <vadim.leontiev at gmail.com>
+- Andrew Yanakov <ayanakov at englishdom.com>
+- Eugene Glotov <kivagant at gmail.com>
+- Vadim Leontiev <vadim.leontiev at gmail.com>
 
 ## License
 
