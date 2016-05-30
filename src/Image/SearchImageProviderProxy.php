@@ -90,7 +90,7 @@ class SearchImageProviderProxy extends SearchImageProviderAbstract
     protected function validateGoogleResponse($originResult, $query)
     {
         if (empty($originResult->queries->request[0]->count) || empty($originResult->items)) {
-            throw new ImageSearchException('Google not found any images by request "' . $query . '"!', __LINE__);
+            throw new ImageSearchException('Google not found any images by request "' . $query . '"!');
         }
     }
 }
