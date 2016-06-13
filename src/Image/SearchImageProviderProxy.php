@@ -28,14 +28,14 @@ class SearchImageProviderProxy extends SearchImageProviderAbstract
 
     /**
      * @param $query
-     * @throws ImageSearchException
+     * @param int $cursor Cursor position
      * @return SearchImageDTO
      */
-    public function getImage($query)
+    public function getImage($query, $cursor = 1)
     {
         $this->result = new SearchImageDTO();
         // Если потребуется, итоговые данные можно преобразовать в формат, ожидаемый извне
-        $originResult = $this->adapter->getImage($query);
+        $originResult = $this->adapter->getImage($query, $cursor);
         if ($this->adapter instanceof GoogleCustomSearchImage) {
             $this->remapGoogleCommon($originResult, $query);
         }
@@ -54,7 +54,7 @@ class SearchImageProviderProxy extends SearchImageProviderAbstract
     protected function remapGoogleCommon($originResult, $query)
     {
         $this->validateGoogleResponse($originResult, $query);
-        $this->result->start = $originResult->queries->request[0]->startIndex - 1;
+        $this->result->cursor = $originResult->queries->request[0]->startIndex - 1;
         $this->result->total = $originResult->queries->request[0]->totalResults;
         $this->result->items = $this->remapGoogleItems($originResult->items);
         $this->result->count = count($this->result->items);

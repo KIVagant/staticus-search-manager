@@ -3,6 +3,8 @@
 namespace SearchManager;
 
 use SearchManager\Adapter\AdapterInterface;
+use SearchManager\Adapter\GoogleAdapter;
+use SearchManager\Image\SearchImageDTO;
 
 /**
  * Class Manager
@@ -11,8 +13,7 @@ use SearchManager\Adapter\AdapterInterface;
 class Manager
 {
     /**
-     * AdapterInterface
-     * @var
+     * @var AdapterInterface|GoogleAdapter
      */
     protected $adapter;
 
@@ -38,7 +39,7 @@ class Manager
 
     /**
      * Get adapter
-     * @return AdapterInterface
+     * @return AdapterInterface|GoogleAdapter
      */
     public function getAdapter()
     {
@@ -48,10 +49,11 @@ class Manager
     /**
      * Read audio from adapter
      * @param $text
-     * @return mixed
+     * @param int $cursor Cursor position
+     * @return SearchImageDTO
      */
-    public function generate($text)
+    public function generate($text, $cursor = 1)
     {
-        return $this->getAdapter()->generate($text);
+        return $this->getAdapter()->generate($text, $cursor);
     }
 }

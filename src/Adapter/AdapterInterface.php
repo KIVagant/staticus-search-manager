@@ -6,7 +6,8 @@ interface AdapterInterface
 {
     /**
      * @param string $text
+     * @param int $cursor
      * @return mixed
      */
-    public function generate($text);
+    public function generate($text, $cursor = 1);
 }

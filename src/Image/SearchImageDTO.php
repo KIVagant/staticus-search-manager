@@ -7,7 +7,7 @@ namespace SearchManager\Image;
  */
 class SearchImageDTO
 {
-    public $start = 0;
+    public $cursor = 0;
     public $count = 0;
     public $total = 0;
     /**

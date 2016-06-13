@@ -4,5 +4,10 @@ namespace SearchManager\Image;
 
 abstract class SearchImageProviderAbstract implements ImageSearchInterface
 {
-    abstract public function getImage($query);
+    /**
+     * @param string $query
+     * @param int $cursor Cursor position
+     * @return SearchImageDTO
+     */
+    abstract public function getImage($query, $cursor = 1);
 }

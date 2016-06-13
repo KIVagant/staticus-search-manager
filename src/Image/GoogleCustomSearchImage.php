@@ -22,12 +22,13 @@ class GoogleCustomSearchImage extends SearchImageProviderAbstract
     {
         $this->config = $config->get('api.google');
     }
+
     /**
      * @param $query
-     * @throws \SearchManager\Image\Exception\ImageSearchException
+     * @param int $cursor Cursor position
      * @return stdClass
      */
-    public function getImage($query)
+    public function getImage($query, $cursor = 1)
     {
         $arguments = [
             'key' => $this->config['key'],
@@ -38,6 +39,7 @@ class GoogleCustomSearchImage extends SearchImageProviderAbstract
             'imgSize' => self::GOOGLE_SEARCH_IMAGE_SIZE,
             'alt' => self::GOOGLE_SEARCH_RESPONSE_FORMAT,
             'safe' => self::GOOGLE_SEARCH_PARAM_SAFE,
+            'start' => $cursor,
         ];
 
         $url = sprintf("%s?%s", self::GOOGLE_SEARCH_API_URL, http_build_query($arguments));
