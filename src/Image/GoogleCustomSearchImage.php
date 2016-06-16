@@ -17,7 +17,9 @@ class GoogleCustomSearchImage extends SearchImageProviderAbstract
     const GOOGLE_SEARCH_RESPONSE_FORMAT = 'json';
     const GOOGLE_SEARCH_REQUEST_METHOD = 'GET';
     const GOOGLE_SEARCH_PARAM_SAFE = 'medium';
+    const CURSOR_DEFAULT = 1;
     protected $config = [];
+
     public function __construct(ConfigInterface $config)
     {
         $this->config = $config->get('api.google');
@@ -26,14 +28,19 @@ class GoogleCustomSearchImage extends SearchImageProviderAbstract
     /**
      * @param $query
      * @param int $cursor Cursor position
-     * @return stdClass
+     * @return mixed
      */
-    public function getImage($query, $cursor = 1)
+    public function getImage($query, $cursor = self::CURSOR_DEFAULT)
     {
+        $cursor = (int)$cursor;
+        if ($cursor <= 0) {
+            $cursor = self::CURSOR_DEFAULT;
+        }
+
         $arguments = [
             'key' => $this->config['key'],
             'cx' => $this->config['cx'],
-            'q' => $query,
+            'q' => trim($query),
             'searchType' => self::GOOGLE_SEARCH_TYPE,
             'fileType' => self::GOOGLE_SEARCH_FILE_TYPE,
             'imgSize' => self::GOOGLE_SEARCH_IMAGE_SIZE,
